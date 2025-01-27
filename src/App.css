@@ -7,8 +7,37 @@ html {
 }
 
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+body {
+  background-color: #201f31;
+}
+
+.navbar-brand {
+  height: 70px;
+  width: 150px;
+}
+
+.navbar-brand a img {
+  height: 100%;
+  object-fit: conatin;
+  height: 100%;
+  width: 100%;
+}
+
+.btn-login {
+  background-color: #ffbf5e;
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #ffbf5e;
+}
+
+.btn-login:hover {
+  background-color: transparent;
+  color: #ffbf5e;
+  border: 1px solid #ffbf5e;
 }
