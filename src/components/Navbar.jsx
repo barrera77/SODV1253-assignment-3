@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { moviesLogo } from "../assets";
-import { FaBars, FaMoon, FaSun } from "react-icons/fa";
+import { mobileLogo, moviesLogo } from "../assets";
+import { FaBars, FaMoon, FaSun, FaUser, FaUserCog } from "react-icons/fa";
 import { FaWindowClose } from "react-icons/fa";
 import Search from "./Search";
 
@@ -31,10 +31,10 @@ const Navbar = () => {
   return (
     <div className="navbar-wrapper text-white py-5 border-b border-b-[#201f31]">
       <nav className=" w-[90%] m-auto">
-        <div className="navbar-mobile sm:hidden flex-1 items-center">
-          <div>
+        <div className="navbar-mobile sm:hidden flex items-center justify-between">
+          <div className="flex items-center gap-[1rem]">
             <div>
-              <button>
+              <button className="btn-toggle">
                 {toggle ? (
                   <FaWindowClose
                     className="text-2xl dark:text-white text:yellow-500"
@@ -48,21 +48,44 @@ const Navbar = () => {
                 )}
               </button>
             </div>
-            <div>
+            <div className="xs:w-[80px]">
               <a href="/" className="">
-                <img src={moviesLogo} alt="logo" className="movies-logo" />
+                <img src={mobileLogo} alt="logo" className="movies-logo" />
               </a>
+            </div>
+          </div>
+          <div className="flex items-center gap-[1rem] justify-end">
+            <div>
+              <button className="mobile-btn-login">
+                <FaUser className="text-2xl" />
+              </button>
+            </div>
+            <div>
+              <button className="pt-1">
+                {darkMode ? (
+                  <FaMoon
+                    className="moon-icon text-2xl text-white"
+                    onClick={() => setDarkMode(!darkMode)}
+                  />
+                ) : (
+                  <FaSun
+                    className="sun-icon text-2xl text-yellow-500"
+                    onClick={() => setDarkMode(!darkMode)}
+                  />
+                )}
+              </button>
             </div>
           </div>
         </div>
         {/* desktop View */}
         <div className="navbar-content xs:hidden sm:flex justify-between items-center ">
-          <div className="flex items-center gap-[1.5rem]">
+          {/* left */}
+          <div className="flex items-center gap-[1rem] w-[25%]">
             <div>
-              <button>
+              <button className="btn-toggle">
                 {toggle ? (
                   <FaWindowClose
-                    className="text-2xl text-white "
+                    className="text-2xl text-[#fff] "
                     onClick={() => setToggle(!toggle)}
                   />
                 ) : (
@@ -79,14 +102,21 @@ const Navbar = () => {
               </a>
             </div>
           </div>
-          <div className="w-[40%]">
+          {/* Middle */}
+          <div className="sm:w-[55%]">
             <div>
               <Search />
             </div>
           </div>
-          <div className="flex items-center gap-[1.5rem]">
-            <div>
+          {/* Right */}
+          <div className="flex items-center justify-end gap-[1rem] w-[15%]">
+            <div className="sm:hidden lg:block">
               <button className="btn-login">Login</button>
+            </div>
+            <div className="lg:hidden">
+              <button className="mobile-btn-login">
+                <FaUser className="text-2xl" />
+              </button>
             </div>
             <div>
               <button className="pt-1">

@@ -13,7 +13,7 @@ const Header = () => {
           alt="slide"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 flex flex-col z-10">
+        <div className="absolute inset-0 flex flex-col z-40">
           <Navbar />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#201f31] to-transparent z-20"></div>

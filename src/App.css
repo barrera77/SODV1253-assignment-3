@@ -24,12 +24,12 @@ html {
 }
 
 .navbar-brand {
-  width: 190px;
+  width: 200px;
 }
 
-.navbar-brand a img {
+.movies-logo {
   height: 100%;
-  object-fit: conatin;
+  object-fit: cover;
   height: 100%;
   width: 100%;
 }
@@ -61,4 +61,38 @@ html {
 .btn-search:hover {
   background-color: #201f31;
   color: #ffbf5e;
+}
+
+.btn-toggle {
+  color: #fff;
+  background-color: #ffbf5e;
+  border: 1px solid #ffbf5e;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.mobile-btn-login {
+  color: #fff;
+  background-color: #ffbf5e;
+  border: 1px solid #ffbf5e;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.btn-mobile-search {
+  color: #fff;
+  background-color: #ffbf5e;
+  position: absolute;
+  bottom: 11px;
+  right: 8px;
+  border: 1px solid #ffbf5e;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .movies-logo {
+    content: url("./assets/mobile-logo.png");
+    width: 100px;
+  }
 }
