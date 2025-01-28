@@ -1,3 +1,5 @@
+import { deadpool, gladiator2, kravenMovie, moana, nosferatu } from "../assets";
+
 const sideBarLinks = [
   {
     id: "home",
@@ -25,4 +27,27 @@ const sideBarLinks = [
   },
 ];
 
-export { sideBarLinks };
+const slides = [
+  {
+    id: "slide1",
+    image: kravenMovie,
+  },
+  {
+    id: "slide2",
+    image: nosferatu,
+  },
+  {
+    id: "slide3",
+    image: moana,
+  },
+  {
+    id: "slide4",
+    image: deadpool,
+  },
+  {
+    id: "slide5",
+    image: gladiator2,
+  },
+];
+
+export { sideBarLinks, slides };
