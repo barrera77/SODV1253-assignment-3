@@ -14,11 +14,11 @@ const Search = () => {
         />
         <button
           type="submit"
-          className="sm:hidden btn-search focus:ring-4 focus:outline-none focus:ring-blue-300 text-sm px-4 py-2 "
+          className="sm:hidden lg:block btn-search focus:ring-4 focus:outline-none focus:ring-blue-300 text-sm px-4 py-2 "
         >
           Search
         </button>
-        <button className="btn-mobile-search">
+        <button className="btn-mobile-search lg:hidden">
           <FaSearch className="text-xl" />
         </button>
       </div>

@@ -3,6 +3,7 @@ import { mobileLogo, moviesLogo } from "../assets";
 import { FaBars, FaMoon, FaSun, FaUser, FaUserCog } from "react-icons/fa";
 import { FaWindowClose } from "react-icons/fa";
 import Search from "./Search";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -32,9 +33,9 @@ const Navbar = () => {
     <div className="navbar-wrapper text-white py-5 border-b border-b-[#201f31]">
       <nav className=" w-[90%] m-auto">
         <div className="navbar-mobile sm:hidden flex items-center justify-between">
-          <div className="flex items-center gap-[1rem]">
+          <div className="ps-10">
             <div>
-              <button className="btn-toggle">
+              {/*  <button className="btn-toggle">
                 {toggle ? (
                   <FaWindowClose
                     className="text-2xl dark:text-white text:yellow-500"
@@ -46,7 +47,7 @@ const Navbar = () => {
                     onClick={() => setToggle(!toggle)}
                   />
                 )}
-              </button>
+              </button> */}
             </div>
             <div className="xs:w-[80px]">
               <a href="/" className="">
@@ -80,22 +81,7 @@ const Navbar = () => {
         {/* desktop View */}
         <div className="navbar-content xs:hidden sm:flex justify-between items-center ">
           {/* left */}
-          <div className="flex items-center gap-[1rem] w-[25%]">
-            <div>
-              <button className="btn-toggle">
-                {toggle ? (
-                  <FaWindowClose
-                    className="text-2xl text-[#fff] "
-                    onClick={() => setToggle(!toggle)}
-                  />
-                ) : (
-                  <FaBars
-                    className="text-2xl"
-                    onClick={() => setToggle(!toggle)}
-                  />
-                )}
-              </button>
-            </div>
+          <div className="ps-8 w-[25%]">
             <div className="navbar-brand">
               <a href="/" className="">
                 <img src={moviesLogo} alt="logo" className="movies-logo" />

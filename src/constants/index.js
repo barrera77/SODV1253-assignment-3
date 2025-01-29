@@ -10,12 +10,8 @@ const sideBarLinks = [
     title: "About",
   },
   {
-    id: "genres",
-    title: "Genres",
-  },
-  {
-    id: "country",
-    title: "Country",
+    id: "movies",
+    title: "Movies",
   },
   {
     id: "tvSeries",
@@ -24,6 +20,10 @@ const sideBarLinks = [
   {
     id: "topIMDB",
     title: "Top IMDB",
+  },
+  {
+    id: "genres",
+    title: "Genres",
   },
 ];
 

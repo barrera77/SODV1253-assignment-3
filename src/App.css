@@ -71,6 +71,10 @@ html {
   padding: 5px;
 }
 
+.btn-toggle:hover {
+  background-color: transparent;
+}
+
 .mobile-btn-login {
   color: #fff;
   background-color: #ffbf5e;
@@ -88,6 +92,17 @@ html {
   border: 1px solid #ffbf5e;
   border-radius: 8px;
   padding: 5px;
+}
+
+.body-overlay {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  overflow: hidden;
+  background: rgba(146, 10, 10, 0.5);
 }
 
 @media (min-width: 640px) and (max-width: 768px) {
