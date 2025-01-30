@@ -7,7 +7,6 @@ const HomePage = () => {
       <div>
         <Header />
         <h1>Home Page</h1>
-        <Sidebar />
       </div>
     </div>
   );

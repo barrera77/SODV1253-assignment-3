@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaBars, FaChevronLeft, FaWindowClose } from "react-icons/fa";
-import { sideBarLinks } from "../constants";
+import { genres, sideBarLinks } from "../constants";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to control sidebar visibility
@@ -35,7 +36,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 z-40 xs:w-[70%] sm:w-64 h-screen p-4 overflow-y-auto bg-white dark:bg-[#201f31] opacity-90 transition-transform ${
+        className={`fixed top-0 left-0 z-40 xs:w-[70%] sm:w-72 h-screen p-4 overflow-y-auto bg-white dark:bg-[#201f31] opacity-90 transition-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -56,13 +57,26 @@ const Sidebar = () => {
             {sideBarLinks.map((link) => (
               <li
                 key={link.id}
-                className="block w-[100%] border-b p-2 border-[#FFFFFF5D] text-start cursor-pointer hover:text-[#ffbf5e]"
+                className="block w-[100%] border-b p-2 dark:border-[#FFFFFF5D] text-start cursor-pointer hover:text-[#ffbf5e]"
               >
-                <a href="/" className="w-[100%] ">
+                <Link to={link.href} className="w-[100%] ">
                   {link.title}
-                </a>
+                </Link>
               </li>
             ))}
+            <li className="text-start ps-2">Genres</li>
+
+            <ul className="space-y-2 grid grid-cols-2 p-2 text-start list-none">
+              {genres.map((genre) => (
+                <li key={genre.id} className="hover:text-white">
+                  <Link to="">
+                    <span style={{ color: genre.color }} className="text-sm">
+                      {genre.genre}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </ul>
         </div>
       </div>

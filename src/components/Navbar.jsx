@@ -4,6 +4,7 @@ import { FaBars, FaMoon, FaSun, FaUser, FaUserCog } from "react-icons/fa";
 import { FaWindowClose } from "react-icons/fa";
 import Search from "./Search";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -50,9 +51,9 @@ const Navbar = () => {
               </button> */}
             </div>
             <div className="xs:w-[80px]">
-              <a href="/" className="">
+              <Link to="/" className="">
                 <img src={mobileLogo} alt="logo" className="movies-logo" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="flex items-center gap-[1rem] justify-end">

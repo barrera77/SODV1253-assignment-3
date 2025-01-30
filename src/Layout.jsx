@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 
 const Layout = ({ children }) => {
   return (
     <>
-      {/* <Navbar /> */}
-
+      <div className="absolute inset-0 flex flex-col z-40">
+        <Navbar />
+      </div>
+      <Sidebar />
       <main>{children}</main>
       <Footer />
     </>
