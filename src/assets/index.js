@@ -5,6 +5,7 @@ import gladiator2 from "./gladiator-2-movie.jpg";
 import moana from "./moana-movie.jpg";
 import deadpool from "./deadpool-wolverine-movie.jpg";
 import nosferatu from "./nosferatu-movie.jpg";
+import moviePosterDummy from "./movie-poster-dummy.jpg";
 
 export {
   moviesLogo,
@@ -14,4 +15,5 @@ export {
   gladiator2,
   deadpool,
   mobileLogo,
+  moviePosterDummy,
 };

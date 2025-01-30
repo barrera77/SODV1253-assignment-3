@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { mobileLogo, moviesLogo } from "../assets";
-import { FaBars, FaMoon, FaSun, FaUser, FaUserCog } from "react-icons/fa";
-import { FaWindowClose } from "react-icons/fa";
+import { FaMoon, FaSun, FaUser } from "react-icons/fa";
 import Search from "./Search";
-import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     const storeMode = localStorage.getItem("darkMode");
 
@@ -35,21 +32,7 @@ const Navbar = () => {
       <nav className=" w-[90%] m-auto">
         <div className="navbar-mobile sm:hidden flex items-center justify-between">
           <div className="ps-10">
-            <div>
-              {/*  <button className="btn-toggle">
-                {toggle ? (
-                  <FaWindowClose
-                    className="text-2xl dark:text-white text:yellow-500"
-                    onClick={() => setToggle(!toggle)}
-                  />
-                ) : (
-                  <FaBars
-                    className="text-2xl"
-                    onClick={() => setToggle(!toggle)}
-                  />
-                )}
-              </button> */}
-            </div>
+            <div></div>
             <div className="xs:w-[80px]">
               <Link to="/" className="">
                 <img src={mobileLogo} alt="logo" className="movies-logo" />
@@ -62,7 +45,7 @@ const Navbar = () => {
                 <FaUser className="text-2xl" />
               </button>
             </div>
-            <div>
+            {/* <div>
               <button className="pt-1">
                 {darkMode ? (
                   <FaMoon
@@ -76,7 +59,7 @@ const Navbar = () => {
                   />
                 )}
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* desktop View */}
@@ -105,7 +88,7 @@ const Navbar = () => {
                 <FaUser className="text-2xl" />
               </button>
             </div>
-            <div>
+            {/* <div>
               <button className="pt-1">
                 {darkMode ? (
                   <FaMoon
@@ -119,7 +102,7 @@ const Navbar = () => {
                   />
                 )}
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>

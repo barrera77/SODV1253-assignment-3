@@ -1,12 +1,14 @@
 import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+import TopRated from "../components/TopRated";
 
 const HomePage = () => {
   return (
     <div>
       <div>
         <Header />
-        <h1>Home Page</h1>
+        <div>
+          <TopRated />
+        </div>
       </div>
     </div>
   );

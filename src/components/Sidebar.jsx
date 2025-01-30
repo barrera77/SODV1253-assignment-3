@@ -21,7 +21,7 @@ const Sidebar = () => {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-[#201f318D] z-40"
+          className="fixed inset-0 bg-gray-950 opacity-80 z-40"
           onClick={closeSidebar}
         ></div>
       )}
