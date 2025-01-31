@@ -12,7 +12,7 @@ export const fetchData = async (end_point) => {
     });
 
     if (!response.ok) {
-      throw new Error(`failed to fetch recipe data: ${response.statusText}`);
+      throw new Error(`failed to fetch data: ${response.statusText}`);
     }
     return await response.json();
   } catch (error) {

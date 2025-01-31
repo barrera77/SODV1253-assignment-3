@@ -12,7 +12,7 @@ const Header = () => {
         />
 
         {/* overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#201f31] to-transparent z-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#201f31] to-transparent z-20"></div>
 
         <button className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 rounded-full text-white hover:bg-black/70">
           <FaChevronLeft size={20} />

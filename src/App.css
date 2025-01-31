@@ -18,9 +18,8 @@ html {
   z-index: 20;
 }
 
-.navbar-wrapper.dark {
+.navbar-wrapper {
   background-color: rgba(32, 31, 49, 0.5);
-  border: none;
 }
 
 .navbar-brand {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaBars, FaChevronLeft, FaWindowClose } from "react-icons/fa";
+import { FaBars, FaChevronLeft } from "react-icons/fa";
 import { genres, sideBarLinks } from "../constants";
 import { Link } from "react-router-dom";
 
@@ -36,11 +36,11 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 z-40 xs:w-[70%] sm:w-72 h-screen p-4 overflow-y-auto bg-white dark:bg-[#201f31] opacity-90 transition-transform ${
+        className={`fixed top-0 left-0 z-40 xs:w-[70%] sm:w-72 h-screen p-4 overflow-y-auto bg-[#201f31] opacity-90 transition-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <h5 className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 pt-5">
+        <h5 className="text-base font-semibold uppercase text-gray-400 pt-5">
           Close Menu
         </h5>
         <button
@@ -57,7 +57,7 @@ const Sidebar = () => {
             {sideBarLinks.map((link) => (
               <li
                 key={link.id}
-                className="block w-[100%] border-b p-2 dark:border-[#FFFFFF5D] text-start cursor-pointer hover:text-[#ffbf5e]"
+                className="block w-[100%] border-b p-2 border-[#FFFFFF5D] text-start cursor-pointer hover:text-[#ffbf5e]"
               >
                 <Link to={link.href} className="w-[100%] ">
                   {link.title}

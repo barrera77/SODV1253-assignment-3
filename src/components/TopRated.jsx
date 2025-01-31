@@ -1,15 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchData } from "../services/api-client";
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaClock,
-  FaClosedCaptioning,
-  FaStar,
-  FaThumbsUp,
-} from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { moviePosterDummy } from "../assets";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import MovieCard from "./MovieCard";
 
 const TOP_RATED_END_POINT = "/movie/top_rated?language=en-US&page=1";
 
@@ -28,7 +20,12 @@ const TopRated = () => {
       );
 
       if (topRatedData.results && topRatedData.results.length > 0) {
-        setMovies((prevMovies) => [...prevMovies, ...topRatedData.results]);
+        //uncomment this page to append the next set of movies
+        //setMovies((prevMovies) => [...prevMovies, ...topRatedData.results]);
+
+        //to replace the current page with the next
+        setMovies(topRatedData.results);
+
         setTotalPages(topRatedData.total_pages);
         setError(null);
         console.log(topRatedData.results);
@@ -53,41 +50,15 @@ const TopRated = () => {
 
   return (
     <div className="container m-auto">
-      <h1>Top Rated Movies</h1>
+      <div className="text-start">
+        <h1 className="text-2xl font-bold">Top Rated Movies</h1>
+      </div>
 
       <div>
         <div className="grid grid-cols-5 gap-5 pt-2">
           {movies &&
             movies.map((movie) => (
-              <div key={movie.id} className="movie-card">
-                <div className="movie-poster relative w-full">
-                  <Link>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${
-                        movie.backdrop_path || movie.poster_path
-                      }`}
-                      alt="Movie Poster"
-                    />
-                  </Link>
-                  <div className="absolute bottom-2 left-2 flex gap-3 w-[90%]">
-                    <span className="flex gap-1  items-center bg-fuchsia-500 text-white p-1 rounded text-xs">
-                      <FaClosedCaptioning /> {movie.original_language}
-                    </span>
-                    <span className="flex gap-1  items-center bg-fuchsia-500 text-white p-1 rounded text-xs">
-                      <FaStar /> {movie.vote_average}
-                    </span>
-                  </div>
-                </div>
-                <div className="movie-details py-2 text-start">
-                  <h3 className="text-md">{movie.title}</h3>
-                  <div className="flex justify-between mt-3 text-sm">
-                    <span>{movie.release_date}</span>
-                    <span className="flex gap-2">
-                      <FaThumbsUp /> {movie.popularity}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <MovieCard key={movie.id} moviesOrSeries={movie} />
             ))}
         </div>
       </div>
@@ -101,7 +72,7 @@ const TopRated = () => {
             </span>{" "}
             of{" "}
             <span className="font-semibold text-gray-900 dark:text-white">
-              {movies.length}
+              {totalPages}
             </span>{" "}
             pages
           </span>
