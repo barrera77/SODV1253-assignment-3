@@ -2,9 +2,9 @@ import { FaClosedCaptioning, FaStar, FaThumbsUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function MovieCard({ moviesOrSeries }) {
+function MovieCard({ moviesOrSeries, className }) {
   return (
-    <div>
+    <div className={`${className}`}>
       <div key={moviesOrSeries.id} className="movie-card">
         <div className="movie-poster relative w-full">
           <Link to="">
@@ -52,6 +52,7 @@ MovieCard.propTypes = {
     release_date: PropTypes.string.isRequired,
     popularity: PropTypes.number.isRequired,
   }).isRequired,
+  className: PropTypes.string,
 };
 
 export default MovieCard;
