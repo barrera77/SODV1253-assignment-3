@@ -1,12 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchData } from "../services/api-client";
 import MovieCard from "./MovieCard";
-import {
-  FaChevronCircleLeft,
-  FaChevronCircleRight,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import SkeletonCard from "./SkeletonCard";
 
 const NOW_PLAYING_END_POINT = "/movie/now_playing?language=en-US&page=1";
 
@@ -15,6 +11,7 @@ const NowPlaying = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isMoved, setIsMoved] = useState(false);
+  const [cardSize, setCardSize] = useState("");
 
   const rowRef = useRef(null);
 
@@ -42,7 +39,7 @@ const NowPlaying = () => {
       const { scrollLeft, clientWidth } = rowRef.current;
 
       const scrollTo =
-        direction === "left"
+        direction === "right"
           ? scrollLeft - clientWidth
           : scrollLeft + clientWidth;
 
@@ -50,31 +47,59 @@ const NowPlaying = () => {
     }
   };
 
-  useEffect(() => {
+  const getCardSize = () => {
+    const width = window.innerWidth;
+
+    let size = "w-[132px]";
+
+    if (width > 1280) {
+      size = "w-[289.6px]";
+    } else if (width > 1024) {
+      size = "w-[238.4px]";
+    } else if (width > 768) {
+      size = "w-[187.2px]";
+    } else if (width > 640) {
+      size = "w-[177px]";
+    } else if (width > 300) {
+      size = "w-[197.333px]";
+    }
+    return size;
+  };
+
+  /*  useEffect(() => {
     getNowPlaying();
-  }, []);
+
+    const updateCardSize = () => {
+      const newCardSize = getCardSize();
+      setCardSize(newCardSize);
+    };
+
+    updateCardSize();
+    window.addEventListener("resize", updateCardSize);
+    return () => window.removeEventListener("size", updateCardSize);
+  }, []); */
 
   return (
-    <div className="container m-auto">
-      <div className="text-start">
+    <div className="container m-auto px-3">
+      <div className="text-start mb-4">
         <h1 className="text-2xl font-bold">Now Playing</h1>
       </div>
       <div className="group relative">
         <button
           onClick={() => handleClick("left")}
-          className="cursor-pointer  absolute left-4 top-1/3 -translate-y-1/2 z-40 p-2 bg-black/50 rounded-full text-yellow-500 hover:bg-black/70 transition hover:scale-125 group-hover:opacity-100"
+          className="cursor-pointer absolute left-4 top-1/3 -translate-y-1/2 z-40 p-2 bg-black/50 rounded-full text-yellow-500 hover:bg-black/70 transition hover:scale-125 group-hover:opacity-100"
         >
           <FaChevronLeft size={20} />
         </button>
         <div
           ref={rowRef}
-          className="scrollbar-hide grid grid-flow-col gap-5 max-h-[600px] overflow-y-scroll scrollbar-hide p-4"
+          className="grid grid-flow-col xs:gap-3 lg:gap-4 overflow-x-scroll scrollbar-hide py-4"
         >
           {movies.map((movie) => (
             <MovieCard
               key={movie.id}
               moviesOrSeries={movie}
-              className="w-[250px]"
+              className={`${cardSize}`}
             />
           ))}
         </div>

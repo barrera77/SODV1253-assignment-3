@@ -114,6 +114,18 @@ html {
   background: rgba(146, 10, 10, 0.5);
 }
 
+.swiper-wrapper {
+  width: 100%;
+  height: max-content !important;
+  padding-bottom: 64px !important;
+  -webkit-transition-timing-function: linear !important;
+  transition-timing-function: linear !important;
+  position: relative;
+}
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: #4f46e5 !important;
+}
+
 @media (min-width: 640px) and (max-width: 768px) {
   .movies-logo {
     content: url("./assets/mobile-logo.png");

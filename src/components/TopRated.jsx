@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchData } from "../services/api-client";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import MovieCard from "./MovieCard";
+import SkeletonCard from "./SkeletonCard";
 
 const TOP_RATED_END_POINT = "/movie/top_rated?language=en-US&page=1";
 
@@ -37,43 +38,42 @@ const TopRated = () => {
     }
   };
 
-  /*  useEffect(() => {
+  /*   useEffect(() => {
     getTopRated(page);
     console.log("useEffect called");
-  }, [page]); */
+  }, [page]);
 
   const loadNextPage = () => {
     if (page < totalPages) {
       setPage((prevPage) => prevPage + 1);
     }
-  };
+  }; */
 
   return (
     <div className="container m-auto">
-      <div className="text-start">
+      <div className="text-start mb-4 xs:px-3">
         <h1 className="text-2xl font-bold">Top Rated Movies</h1>
       </div>
 
-      <div>
-        <div className="grid grid-cols-5 gap-5 pt-2">
-          {movies &&
-            movies.map((movie) => (
-              <MovieCard key={movie.id} moviesOrSeries={movie} />
-            ))}
+      <div className="px-3">
+        <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4">
+          {loading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <SkeletonCard key={index} />
+              ))
+            : movies &&
+              movies.map((movie) => (
+                <MovieCard key={movie.id} moviesOrSeries={movie} />
+              ))}
         </div>
       </div>
       {/* paginator */}
       <div className="w-full mt-[3rem]">
-        <div className="flex justify-between items-center w-[50%] m-auto">
-          <span className="text-sm text-gray-700 dark:text-gray-400">
+        <div className="flex justify-between items-center m-auto xs:flex-col xs:gap-4 md:flex-row md:justify-center">
+          <span className="text-sm text-white">
             Showing page{" "}
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {page}
-            </span>{" "}
-            of{" "}
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {totalPages}
-            </span>{" "}
+            <span className="font-semibold text-yellow-500">{page}</span> of{" "}
+            <span className="font-semibold text-yellow-500">{totalPages}</span>{" "}
             pages
           </span>
           <div className="inline-flex mt-2 xs:mt-0 z-40">

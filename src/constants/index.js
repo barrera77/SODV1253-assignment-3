@@ -108,23 +108,23 @@ const genres = [
 
 const slides = [
   {
-    id: "slide1",
+    id: 1,
     image: kravenMovie,
   },
   {
-    id: "slide2",
+    id: 2,
     image: nosferatu,
   },
   {
-    id: "slide3",
+    id: 3,
     image: moana,
   },
   {
-    id: "slide4",
+    id: 4,
     image: deadpool,
   },
   {
-    id: "slide5",
+    id: 5,
     image: gladiator2,
   },
 ];
