@@ -1,10 +1,11 @@
 import {
   FaCalendar,
   FaClosedCaptioning,
+  FaPlayCircle,
   FaStar,
   FaThumbsUp,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Links } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
@@ -14,14 +15,14 @@ function MovieCard({ moviesOrSeries, className }) {
   const getDynamicMoviePosterUrl = (poster_path, backdrop_path) => {
     const width = window.innerWidth;
 
-    let size = "w200";
+    let size = "w185";
 
     if (width > 640) {
-      size = "w400";
+      size = "w342";
     } else if (width > 768) {
-      size = "w600";
+      size = "w500";
     } else if (width > 1024) {
-      size = "w800";
+      size = "w780";
     }
 
     return `https://image.tmdb.org/t/p/${size}${poster_path || backdrop_path}`;
@@ -44,11 +45,12 @@ function MovieCard({ moviesOrSeries, className }) {
 
   return (
     <div className={`${className}`}>
-      <div key={moviesOrSeries.id} className="movie-card">
-        <div className="movie-poster relative w-full ">
-          <Link to="">
-            <img src={imageUrl} alt="Movie Poster" className="responsive-img" />
-          </Link>
+      <div
+        key={moviesOrSeries.id}
+        className="movie-card relative overflow-hidden"
+      >
+        <div className="movie-poster relative w-full overflow-hidden">
+          <img src={imageUrl} alt="Movie Poster" className="responsive-img" />
           <div className="absolute bottom-2 left-2 flex gap-3 w-[90%]">
             <span className="flex gap-1  items-center bg-fuchsia-500 text-white p-1 rounded text-xs">
               <FaClosedCaptioning /> {moviesOrSeries.original_language}
@@ -76,6 +78,17 @@ function MovieCard({ moviesOrSeries, className }) {
               <FaThumbsUp /> {moviesOrSeries.popularity}
             </span>
           </div>
+        </div>
+
+        {/* Movie card overlay */}
+
+        <div className="movie-card-overlay flex justify-center items-center bg-transparent">
+          <Link to={""}>
+            <div className="flex flex-col justify-center items-center gap-5 ">
+              <FaPlayCircle className="text-[5rem] text-yellow-500" />
+              <span className="text-xl font-semibold">Watch Now</span>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

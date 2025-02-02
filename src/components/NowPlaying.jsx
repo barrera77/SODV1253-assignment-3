@@ -1,36 +1,16 @@
+import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
-import { fetchData } from "../services/api-client";
 import MovieCard from "./MovieCard";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SkeletonCard from "./SkeletonCard";
 
-const NOW_PLAYING_END_POINT = "/movie/now_playing?language=en-US&page=1";
-
-const NowPlaying = () => {
-  const [movies, setMovies] = useState([]);
+const NowPlaying = ({ movies }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isMoved, setIsMoved] = useState(false);
   const [cardSize, setCardSize] = useState("");
 
   const rowRef = useRef(null);
-
-  const getNowPlaying = async () => {
-    setLoading(true);
-    try {
-      const nowPlayingMovies = await fetchData(NOW_PLAYING_END_POINT);
-
-      if (nowPlayingMovies.results && nowPlayingMovies.results.length > 0) {
-        setMovies(nowPlayingMovies.results);
-        setError(null);
-        console.log(nowPlayingMovies.results);
-      }
-    } catch (err) {
-      setError("Failed to fetch data", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleClick = (direction) => {
     setIsMoved(true);
@@ -66,9 +46,7 @@ const NowPlaying = () => {
     return size;
   };
 
-  /*  useEffect(() => {
-    getNowPlaying();
-
+  useEffect(() => {
     const updateCardSize = () => {
       const newCardSize = getCardSize();
       setCardSize(newCardSize);
@@ -77,10 +55,10 @@ const NowPlaying = () => {
     updateCardSize();
     window.addEventListener("resize", updateCardSize);
     return () => window.removeEventListener("size", updateCardSize);
-  }, []); */
+  }, []);
 
   return (
-    <div className="container m-auto px-3">
+    <div className="container m-auto px-3 z-50">
       <div className="text-start mb-4">
         <h1 className="text-2xl font-bold">Now Playing</h1>
       </div>
@@ -114,6 +92,20 @@ const NowPlaying = () => {
       </div>
     </div>
   );
+};
+
+NowPlaying.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
+      backdrop_path: PropTypes.string,
+      release_date: PropTypes.string,
+      vote_average: PropTypes.number,
+      overview: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default NowPlaying;

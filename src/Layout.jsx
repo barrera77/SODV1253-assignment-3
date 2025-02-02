@@ -6,10 +6,11 @@ import Sidebar from "./components/Sidebar";
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="absolute inset-0 flex flex-col z-40">
+      <div className="absolute inset-0 flex flex-col z-50  ">
         <Navbar />
+        <Sidebar />
       </div>
-      <Sidebar />
+
       <main>{children}</main>
       <Footer />
     </>
