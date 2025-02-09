@@ -52,7 +52,7 @@ html {
 }
 
 .btn-login:hover {
-  background-color: transparent;
+  background-color: #201f31;
   color: #ffbf5e;
   border: 1px solid #ffbf5e;
 }
@@ -163,4 +163,7 @@ html {
     content: url("./assets/mobile-logo.png");
     width: 100px;
   }
+}
+
+@media (min-width: 300px) and (max-width: 640px) {
 }

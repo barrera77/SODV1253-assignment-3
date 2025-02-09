@@ -83,7 +83,7 @@ const NowPlaying = ({ movies }) => {
         </div>
         <button
           onClick={() => handleClick("right")}
-          className={`cursor-pointer  absolute right-4 top-1/3 -translate-y-1/2 z-40 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition hover:scale-125 group-hover:opacity-100 ${
+          className={`cursor-pointer  absolute right-4 top-1/3 -translate-y-1/2 z-40 p-2 bg-black/50 rounded-full text-yellow-500 hover:bg-black/70 transition hover:scale-125 group-hover:opacity-100 ${
             !isMoved && "hidden"
           }`}
         >

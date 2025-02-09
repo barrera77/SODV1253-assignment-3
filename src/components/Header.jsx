@@ -40,7 +40,7 @@ const Header = ({ slides }) => {
 
   return (
     <div className="header-wrapper">
-      <div className="relative w-full h-[85vh]">
+      <div className="relative w-full xs:h-[65vh] md:h-[85vh]">
         {/* slider images */}
         {slides.map((slide, index) => (
           <img
@@ -49,7 +49,7 @@ const Header = ({ slides }) => {
               slide.backdrop_path || slide.poster_path
             }`}
             alt="slide"
-            className={`absolute inset-0 w-full h-full object-center transition-opacity duration-1000 ease-in-out  ${
+            className={`hero-poster absolute inset-0 w-full h-full object-center transition-opacity duration-1000 ease-in-out  ${
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -59,31 +59,35 @@ const Header = ({ slides }) => {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute top-[35%] left-[10%] z-50  transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
+            className={`absolute xs:top-[50%] md:top-[40%] lg:top-[35%] left-[10%] z-50  transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
             }`}
           >
-            <h2 className="text-[5rem]">{slide.title}</h2>
+            <h2 className="xs:text-[2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem]">
+              {slide.title}
+            </h2>
             <div className="my-4 flex justify-between w-[250px]">
-              <span className="flex gap-2 items-center">
+              <span className="flex gap-2 items-center xs:text-[14px] lg:text-[1rem]">
                 <FaCalendar /> {slide.release_date}
               </span>
-              <span className="flex gap-2 items-center">
+              <span className="flex gap-2 items-center xs:text-[14px] lg:text-[1rem]">
                 <FaClosedCaptioning />
                 {slide.original_language}
               </span>
             </div>
-            <Link className="text-2xl w-[250px] flex gap-2 items-center py-2 justify-center rounded-[8px] border border-[#ffbf5e] bg-[#ffbf5e]">
+            <Link className="text-2xl w-[250px] flex gap-2 items-center py-2 justify-center rounded-[8px] border border-[#ffbf5e] bg-[#ffbf5e] hover:bg-[#201f31]">
               <FaPlayCircle /> Watch Now
             </Link>
           </div>
         ))}
 
         {/* slider image overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#201f31] to-transparent z-40 h-[85vh]"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#201f31] to-transparent z-40 xs:h-[65vh] md:h-[85vh]"></div>
 
         {/* slider indicators */}
-        <div className="absolute z-50 flex -translate-x-1/2 bottom-28 left-1/2 space-x-3 rtl:space-x-reverse">
+        <div className="absolute z-50 flex -translate-x-1/2 xs:bottom-5 md:bottom-28 left-1/2 space-x-3 rtl:space-x-reverse">
           {slides.map((slide, index) => (
             <button
               key={slide.id}
@@ -103,7 +107,11 @@ const Header = ({ slides }) => {
         </div>
 
         {/* slider controls*/}
-        <div onMouseEnter={stopAutoSlide} onMouseLeave={startAutoSlide}>
+        <div
+          onMouseEnter={stopAutoSlide}
+          onMouseLeave={startAutoSlide}
+          className="xs:hidden"
+        >
           <button
             onClick={prevSlide}
             className="absolute left-[3%] top-1/2 -translate-y-1/2 z-50 p-3 bg-black/50 rounded-full text-white hover:bg-black/70 border-2 border-yellow-500"
