@@ -21,7 +21,7 @@ const TopRated = () => {
       );
 
       if (topRatedData.results && topRatedData.results.length > 0) {
-        //uncomment this page to append the next set of movies
+        //uncomment this to append the next set of movies
         //setMovies((prevMovies) => [...prevMovies, ...topRatedData.results]);
 
         //to replace the current page with the next

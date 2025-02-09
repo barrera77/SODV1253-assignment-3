@@ -83,7 +83,7 @@ function MovieCard({ moviesOrSeries, className }) {
         {/* Movie card overlay */}
 
         <div className="movie-card-overlay flex justify-center items-center bg-transparent">
-          <Link to={""}>
+          <Link to={"/movieDetails"}>
             <div className="flex flex-col justify-center items-center gap-5 ">
               <FaPlayCircle className="xs:text-[3rem] md:text-[4rem] lg:text-[5rem] text-yellow-500" />
               <span className="xs:text-[1rem] sm:text-xl font-semibold">
