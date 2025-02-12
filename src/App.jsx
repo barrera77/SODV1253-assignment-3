@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import Layout from "./Layout";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import About from "./pages/About";
+import SearchResultsPage from "./pages/SearchResultsPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movieDetails/:id" element={<MovieDetailsPage />} />
+          <Route path="/search" element={<SearchResultsPage />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </Layout>

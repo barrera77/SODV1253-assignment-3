@@ -1,35 +1,29 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { fetchData } from "../services/api-client";
+import MovieCard from "../components/MovieCard";
+import SkeletonCard from "../components/SkeletonCard";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import MovieCard from "./MovieCard";
-import SkeletonCard from "./SkeletonCard";
 
-const TOP_RATED_END_POINT = "/movie/top_rated?language=en-US&page=1";
-
-const TopRated = () => {
+const SearchResultsPage = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const getTopRated = async (pageNumber) => {
-    setLoading(true);
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get("q");
+
+  const getSearchResultsByPage = async (pageNumber) => {
     try {
-      const topRatedData = await fetchData(
-        `${TOP_RATED_END_POINT}&page=${pageNumber}`
+      const searchResults = await fetchData(
+        `/search/movie?query=${searchQuery}&page=${pageNumber}`
       );
 
-      if (topRatedData.results && topRatedData.results.length > 0) {
-        //uncomment this to append the next set of movies
-        //setMovies((prevMovies) => [...prevMovies, ...topRatedData.results]);
-
-        //to replace the current page with the next
-        setMovies(topRatedData.results);
-
-        setTotalPages(topRatedData.total_pages);
-        setError(null);
-        console.log(topRatedData.results);
+      if (searchResults.results && searchResults.results.length > 0) {
+        setMovies(searchResults.results);
+        setTotalPages(searchResults.total_pages);
       }
     } catch (err) {
       setError("Failed to fetch data", err);
@@ -39,8 +33,7 @@ const TopRated = () => {
   };
 
   useEffect(() => {
-    getTopRated(page);
-    console.log("useEffect called");
+    getSearchResultsByPage(page);
   }, [page]);
 
   const loadNextPage = () => {
@@ -50,13 +43,15 @@ const TopRated = () => {
   };
 
   return (
-    <div className="container m-auto">
-      <div className="text-start mb-4 xs:px-3">
-        <h1 className="text-2xl font-bold">Top Rated Movies</h1>
+    <div className="container mt-[7.5%] m-auto">
+      <div className="border-b border-gray-400 pt-6 pb-10 text-start">
+        <p className="text-[1.25em]">Results for:</p>
+        <h2 className="text-[45px] font-bold text-[#ffbf5e]">{searchQuery}</h2>
       </div>
 
-      {/* Top rated Movies */}
-      <div className="px-3">
+      {/* Search Results */}
+
+      <div className="px-3 mt-[4rem]">
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4">
           {loading
             ? Array.from({ length: 5 }).map((_, index) => (
@@ -98,4 +93,4 @@ const TopRated = () => {
   );
 };
 
-export default TopRated;
+export default SearchResultsPage;
