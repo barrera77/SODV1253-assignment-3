@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import { useState } from "react";
 import { FaBars, FaChevronLeft } from "react-icons/fa";
 import { genres, sideBarLinks } from "../constants";
@@ -16,31 +17,23 @@ const Sidebar = () => {
     setIsOpen(false);
   };
 
-  return (
+  const sidebarContent = (
     <>
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-gray-950 opacity-80 z-40"
+          className="fixed inset-0 bg-gray-950 opacity-80 z-[90]"
           onClick={closeSidebar}
         ></div>
       )}
 
-      {/* Toggle Button */}
-      <button
-        onClick={openSidebar}
-        className="btn-toggle fixed xs:top-5 xs:left-3 sm:top-7 md:left-5 lg:left-7 xl:left-9 2xl:left-16 z-40"
-      >
-        <FaBars className="text-2xl" />
-      </button>
-
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 z-40 xs:w-[70%] sm:w-72 h-screen p-4 overflow-y-auto bg-[#201f31] opacity-90 transition-transform ${
+        className={`fixed top-0 left-0 z-[100] xs:w-[70%] sm:w-72 h-screen p-4 overflow-y-auto bg-[#201f31] opacity-90 transition-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <h5 className="text-base font-semibold uppercase text-gray-400 pt-5">
+        <h5 className="text-end sm:text-center font-semibold uppercase text-gray-400 pt-5">
           Close Menu
         </h5>
         <button
@@ -80,6 +73,24 @@ const Sidebar = () => {
           </ul>
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Toggle Button */}
+      <button
+        onClick={openSidebar}
+        className="btn-toggle fixed xs:top-5 xs:left-3 sm:top-7 md:left-5 lg:left-7 xl:left-9 2xl:left-16 z-40"
+      >
+        <FaBars className="text-2xl" />
+      </button>
+
+      {/* Render Sidebar inside a Portal */}
+      {ReactDOM.createPortal(
+        sidebarContent,
+        document.getElementById("sidebar-portal")
+      )}
     </>
   );
 };

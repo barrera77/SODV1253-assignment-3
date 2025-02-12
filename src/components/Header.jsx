@@ -40,7 +40,7 @@ const Header = ({ slides }) => {
 
   return (
     <div className="header-wrapper">
-      <div className="relative w-full xs:h-[65vh] md:h-[85vh]">
+      <div className="relative w-full xs:h-[65vh] md:h-[85vh] xl:h-[88vh]">
         {/* slider images */}
         {slides.map((slide, index) => (
           <img
@@ -77,14 +77,17 @@ const Header = ({ slides }) => {
                 {slide.original_language}
               </span>
             </div>
-            <Link className="text-2xl w-[250px] flex gap-2 items-center py-2 justify-center rounded-[8px] border border-[#ffbf5e] bg-[#ffbf5e] hover:bg-[#201f31]">
+            <Link
+              to={`/movieDetails/${slide.id}`}
+              className="text-2xl w-[250px] flex gap-2 items-center py-2 justify-center rounded-[8px] border border-[#ffbf5e] bg-[#ffbf5e] hover:bg-[#201f31]"
+            >
               <FaPlayCircle /> Watch Now
             </Link>
           </div>
         ))}
 
         {/* slider image overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#201f31] to-transparent z-40 xs:h-[65vh] md:h-[85vh]"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#201f31] to-transparent z-40 xs:h-[65vh] md:h-[85vh] xl:h-[88vh]"></div>
 
         {/* slider indicators */}
         <div className="absolute z-50 flex -translate-x-1/2 xs:bottom-5 md:bottom-28 left-1/2 space-x-3 rtl:space-x-reverse">
@@ -110,7 +113,7 @@ const Header = ({ slides }) => {
         <div
           onMouseEnter={stopAutoSlide}
           onMouseLeave={startAutoSlide}
-          className="xs:hidden"
+          className="xs:hidden md:block"
         >
           <button
             onClick={prevSlide}

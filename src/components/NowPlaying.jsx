@@ -71,7 +71,7 @@ const NowPlaying = ({ movies }) => {
         </button>
         <div
           ref={rowRef}
-          className="grid grid-flow-col xs:gap-3 lg:gap-4 overflow-x-scroll scrollbar-hide py-4"
+          className="md:grid grid-flow-col flex flex-wrap xs:gap-3 lg:gap-4 overflow-x-scroll scrollbar-hide py-4"
         >
           {movies.map((movie) => (
             <MovieCard

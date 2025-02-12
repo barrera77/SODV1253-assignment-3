@@ -5,12 +5,14 @@ import {
   FaStar,
   FaThumbsUp,
 } from "react-icons/fa";
-import { Link, Links } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import QuickDetails from "./QuickDetails";
 
 function MovieCard({ moviesOrSeries, className }) {
   const [imageUrl, setImageUrl] = useState("");
+  const [showQuickDetails, setShowQuickDetails] = useState(false);
 
   const getDynamicMoviePosterUrl = (poster_path, backdrop_path) => {
     const width = window.innerWidth;
@@ -61,7 +63,7 @@ function MovieCard({ moviesOrSeries, className }) {
           </div>
         </div>
         <div className="movie-details py-2 text-start">
-          <Link to="">
+          <Link to={""}>
             {" "}
             <h3 className="xs:truncate max-w-full text-md">
               {moviesOrSeries.title}
@@ -83,16 +85,32 @@ function MovieCard({ moviesOrSeries, className }) {
         {/* Movie card overlay */}
 
         <div className="movie-card-overlay flex justify-center items-center bg-transparent">
-          <Link to={"/movieDetails"}>
+          {/*  <Link to={`/movieDetails/${moviesOrSeries.id}`}>
             <div className="flex flex-col justify-center items-center gap-5 ">
               <FaPlayCircle className="xs:text-[3rem] md:text-[4rem] lg:text-[5rem] text-yellow-500" />
               <span className="xs:text-[1rem] sm:text-xl font-semibold">
                 Watch Now
               </span>
             </div>
-          </Link>
+          </Link> */}
+
+          <button onClick={() => setShowQuickDetails(true)}>
+            <div className="flex flex-col justify-center items-center gap-5 ">
+              <FaPlayCircle className="xs:text-[3rem] md:text-[4rem] lg:text-[5rem] text-yellow-500" />
+              <span className="xs:text-[1rem] sm:text-xl font-semibold">
+                Quick Details
+              </span>
+            </div>
+          </button>
         </div>
       </div>
+      {/* Quick View Modal */}
+      {showQuickDetails && (
+        <QuickDetails
+          movie={moviesOrSeries}
+          onClose={() => setShowQuickDetails(false)}
+        />
+      )}
     </div>
   );
 }
