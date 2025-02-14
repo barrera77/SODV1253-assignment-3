@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchData } from "../services/api-client";
 import MovieCard from "../components/MovieCard";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const MoviesByGenrePage = () => {
   const location = useLocation();
@@ -10,15 +11,40 @@ const MoviesByGenrePage = () => {
   const genreName = queryParams.get("name");
 
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getFilteringResultsByPage = async (pageNumber) => {
+    try {
+      const filterByGenreResults = await fetchData(
+        `/discover/movie?with_genres=${genreId}&page=${pageNumber}`
+      );
+
+      if (
+        filterByGenreResults.results &&
+        filterByGenreResults.results.length > 0
+      ) {
+        setMovies(filterByGenreResults.results);
+        setTotalPages(filterByGenreResults.total_pages);
+      }
+    } catch (err) {
+      setError("Failed to fetch data", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (!genreId) return;
+    getFilteringResultsByPage(page);
+  }, [page]);
 
-    fetchData(`/discover/movie?with_genres=${genreId}`)
-      .then((data) => setMovies(data.results || []))
-      .catch(() => setError("Failed to fetch movies"));
-  }, [genreId]);
+  const loadNextPage = () => {
+    if (page < totalPages) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
 
   return (
     <div className="container mt-[25%] sm:mt-[15%] lg:mt-[10%] xl:mt-[7.5%] m-auto">
@@ -29,6 +55,7 @@ const MoviesByGenrePage = () => {
 
       {error && <p className="text-red-500">{error}</p>}
 
+      {/* FIltering Results */}
       <div className="px-3 mt-[4rem]">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
           {movies.length > 0 ? (
@@ -38,6 +65,33 @@ const MoviesByGenrePage = () => {
           ) : (
             <p className="text-gray-400">No movies found for this genre.</p>
           )}
+        </div>
+      </div>
+
+      {/* paginator */}
+      <div className="w-full mt-[3rem]">
+        <div className="flex justify-between items-center m-auto xs:flex-col xs:gap-4 md:flex-row md:justify-center">
+          <span className="text-sm text-white">
+            Showing page{" "}
+            <span className="font-semibold text-yellow-500">{page}</span> of{" "}
+            <span className="font-semibold text-yellow-500">{totalPages}</span>{" "}
+            pages
+          </span>
+          <div className="inline-flex mt-2 xs:mt-0 z-40">
+            <button className="py-[0.4rem] px-4 flex gap-3 items-center text-sm font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+              <FaArrowLeft /> Prev
+            </button>
+            {page < totalPages && (
+              <button
+                onClick={loadNextPage}
+                className="py-[0.4rem] px-4 flex gap-3 items-center text-sm font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                disabled={loading}
+              >
+                Next
+                <FaArrowRight />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
