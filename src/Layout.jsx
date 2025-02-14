@@ -6,18 +6,19 @@ import Sidebar from "./components/Sidebar";
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="absolute inset-0 flex flex-col z-50  ">
+      <div className="fixed top-0 left-0 w-full z-50">
         <Navbar />
         <Sidebar />
       </div>
 
-      <main>{children}</main>
+      <main className="relative">{children}</main>
+
       <Footer />
     </>
   );
 };
 
-// Validate that `children` is a valid React node
+// Validate the props (children)
 Layout.propTypes = {
   children: PropTypes.node,
 };

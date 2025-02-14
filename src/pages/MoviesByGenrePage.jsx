@@ -16,10 +16,11 @@ const MoviesByGenrePage = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const getFilteringResultsByPage = async (pageNumber) => {
+  const getFilteringResultsByPage = async (genre, pageNumber) => {
+    setLoading(true);
     try {
       const filterByGenreResults = await fetchData(
-        `/discover/movie?with_genres=${genreId}&page=${pageNumber}`
+        `/discover/movie?with_genres=${genre}&page=${pageNumber}`
       );
 
       if (
@@ -30,14 +31,23 @@ const MoviesByGenrePage = () => {
         setTotalPages(filterByGenreResults.total_pages);
       }
     } catch (err) {
-      setError("Failed to fetch data", err);
+      setError("Failed to fetch data");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getFilteringResultsByPage(page);
+    if (genreId) {
+      setPage(1); // Reset page to 1 if the genre changes
+      getFilteringResultsByPage(genreId, 1);
+    }
+  }, [genreId]);
+
+  useEffect(() => {
+    if (genreId) {
+      getFilteringResultsByPage(genreId, page);
+    }
   }, [page]);
 
   const loadNextPage = () => {
@@ -47,7 +57,7 @@ const MoviesByGenrePage = () => {
   };
 
   return (
-    <div className="container mt-[25%] sm:mt-[15%] lg:mt-[10%] xl:mt-[7.5%] m-auto">
+    <div className="container mt-[25%] sm:mt-[15%] lg:mt-[10%] xl:mt-[7.5%] m-auto z-[999]">
       <div className="border-b border-gray-400 pt-6 pb-10 text-start">
         <p className="text-[1.25em]">Results for:</p>
         <h2 className="text-[45px] font-bold text-[#ffbf5e]">{genreName}</h2>
@@ -55,7 +65,7 @@ const MoviesByGenrePage = () => {
 
       {error && <p className="text-red-500">{error}</p>}
 
-      {/* FIltering Results */}
+      {/* Filtering Results */}
       <div className="px-3 mt-[4rem]">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
           {movies.length > 0 ? (
@@ -78,7 +88,11 @@ const MoviesByGenrePage = () => {
             pages
           </span>
           <div className="inline-flex mt-2 xs:mt-0 z-40">
-            <button className="py-[0.4rem] px-4 flex gap-3 items-center text-sm font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+            <button
+              className="py-[0.4rem] px-4 flex gap-3 items-center text-sm font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              disabled={page === 1}
+              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            >
               <FaArrowLeft /> Prev
             </button>
             {page < totalPages && (

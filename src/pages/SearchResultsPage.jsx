@@ -43,7 +43,7 @@ const SearchResultsPage = () => {
   };
 
   return (
-    <div className="container mt-[25%] sm:mt-[15%] lg:mt-[10%] xl:mt-[7.5%] m-auto">
+    <div className="container mt-[25%] sm:mt-[15%] lg:mt-[10%] xl:mt-[7.5%] m-auto z-[70]">
       <div className="border-b border-gray-400 pt-6 pb-10 text-start">
         <p className="text-[1.25em]">Results for:</p>
         <h2 className="text-[45px] font-bold text-[#ffbf5e]">{searchQuery}</h2>
