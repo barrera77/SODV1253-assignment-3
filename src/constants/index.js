@@ -30,14 +30,12 @@ const sideBarLinks = [
 
 const genres = [
   {
-    id: "action&adventure",
-    genre: "Action & Adventure",
-    color: "red",
+    id: "action&adve",
+    genre: "Action",
   },
   {
     id: "animation",
     genre: "Animation",
-    color: "green",
   },
   {
     id: "crime",

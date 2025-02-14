@@ -1,11 +1,39 @@
 import ReactDOM from "react-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchData } from "../services/api-client";
 import { FaBars, FaChevronLeft } from "react-icons/fa";
-import { genres, sideBarLinks } from "../constants";
+import { sideBarLinks } from "../constants";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to control sidebar visibility
+  const [error, setError] = useState(null);
+  const [genres, setGenres] = useState([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchData("/genre/movie/list?language=en")
+      .then((data) => {
+        if (data && data.genres) {
+          setGenres(data.genres);
+          console.log("Genres List:", data.genres);
+        } else {
+          console.log("No genres found in response!");
+          setGenres([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to fetch movie genres:", error);
+        setError("Failed to fetch movie genres");
+      });
+  }, []);
+
+  const handleGenreButtonClick = (genre) => {
+    closeSidebar();
+    navigate(`/genres?genre=${genre.id}&name=${genre.name}`);
+  };
 
   // Open Sidebar
   const openSidebar = () => {
@@ -59,14 +87,14 @@ const Sidebar = () => {
             ))}
             <li className="text-start ps-2">Genres</li>
 
-            <ul className="space-y-2 grid grid-cols-2 p-2 text-start list-none">
+            <ul className="grid grid-cols-2 p-2 text-start list-none">
               {genres.map((genre) => (
                 <li key={genre.id} className="hover:text-white">
-                  <Link to="">
-                    <span style={{ color: genre.color }} className="text-sm">
-                      {genre.genre}
+                  <button onClick={() => handleGenreButtonClick(genre)}>
+                    <span className="text-sm text-[#ffbf5e] hover:text-white">
+                      {genre.name}
                     </span>
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
