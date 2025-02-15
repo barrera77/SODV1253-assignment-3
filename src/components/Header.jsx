@@ -59,13 +59,13 @@ const Header = ({ slides }) => {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute xs:top-[50%] md:top-[40%] lg:top-[35%] left-[10%] z-50  transition-opacity duration-1000 ease-in-out ${
+            className={`absolute lg:w-[55%] xs:top-[50%] md:top-[40%] lg:top-[35%] left-[10%] z-50  transition-opacity duration-1000 ease-in-out ${
               index === currentSlide
                 ? "opacity-100 pointer-events-auto"
                 : "opacity-0 pointer-events-none"
             }`}
           >
-            <h2 className="xs:text-[2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem]">
+            <h2 className="leading-none text-left xs:text-[2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] ">
               {slide.title}
             </h2>
             <div className="my-4 flex justify-between w-[250px]">
