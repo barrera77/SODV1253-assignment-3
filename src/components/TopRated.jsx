@@ -50,7 +50,7 @@ const TopRated = () => {
   };
 
   return (
-    <div className="container m-auto">
+    <div className="sm:container m-auto">
       <div className="text-start mb-4 xs:px-3">
         <h1 className="text-2xl font-bold">Top Rated Movies</h1>
       </div>

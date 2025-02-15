@@ -37,7 +37,7 @@ const HomePage = () => {
           <Header slides={getSliderMovies(5)} />
         </div>{" "}
         <div>
-          <div className="my-5 z-50">
+          <div className="w-full my-5 z-50">
             <NowPlaying movies={movies} />
           </div>
           <div className="py-5 ">
