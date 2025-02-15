@@ -144,7 +144,7 @@ const MovieDetailsPage = () => {
             {/* Movie Details */}
             <div className="w-full md:w-[65%] lg:w-[75%] lg:mt-3 text-sm md:text-[.95em] lg:text-[1em] 2xl:text-[1.25em] ">
               <div className="text-start 2xl:w-[60%] border-b mb-7 px-4 pb-3 lg:p-4">
-                <h2 className="text-[30px] md:text-[45px] font-bold py-3">
+                <h2 className="text-[30px] md:text-[45px] font-bold py-3 leading-tight">
                   {movieDetails.title}
                 </h2>
                 <div className="flex gap-4 py-2">
