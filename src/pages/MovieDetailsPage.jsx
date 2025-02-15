@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { deadpool } from "../assets";
 import { fetchData } from "../services/api-client";
 import MovieCard from "../components/MovieCard";
 import { useParams } from "react-router-dom";
