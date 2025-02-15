@@ -100,7 +100,6 @@ const MovieDetailsPage = () => {
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
 
-  // ✅ Prevent errors by checking if `movieDetails` exists before rendering
   if (!movieDetails) {
     return (
       <p className="text-center text-lg text-gray-400">
@@ -113,7 +112,7 @@ const MovieDetailsPage = () => {
     <div className="xs:mt-[30%] sm:mt-[15%] lg:mt-[10%] 2xl:mt-[5%]">
       <div className="xs:w-[100%] xs:px-2 md:px-6 xl:w-[90%]  m-auto ">
         {/* Movie Trailer Section */}
-        <div className="w-full xs:h-[200px] sm:h-[360px] md:h-[450px] lg:h-[600px] 2xl:h-[90vh] flex justify-center items-center">
+        <div className="w-full xs:h-[250px] sm:h-[360px] md:h-[450px] lg:h-[600px] 2xl:h-[90vh] flex justify-center items-center">
           {trailer ? (
             <iframe
               width="100%"
