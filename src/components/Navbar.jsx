@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { mobileLogo, moviesLogo } from "../assets";
 import { FaUser } from "react-icons/fa";
 import Search from "./Search";
@@ -9,8 +8,7 @@ const Navbar = () => {
     <div className="navbar-wrapper py-5">
       <nav className=" w-[90%] m-auto">
         <div className="navbar-mobile sm:hidden flex items-center justify-between">
-          <div className="ps-10">
-            <div></div>
+          <div className="ps-20">
             <div className="xs:w-[80px]">
               <Link to="/" className="">
                 <img src={mobileLogo} alt="logo" className="movies-logo" />

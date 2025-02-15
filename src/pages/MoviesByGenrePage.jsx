@@ -58,9 +58,11 @@ const MoviesByGenrePage = () => {
 
   return (
     <div className="container mt-[25%] sm:mt-[15%] lg:mt-[10%] xl:mt-[7.5%] m-auto z-[999]">
-      <div className="border-b border-gray-400 pt-6 pb-10 text-start">
+      <div className="px-[1rem] border-b border-gray-400 pt-6 pb-10 text-start">
         <p className="text-[1.25em]">Results for:</p>
-        <h2 className="text-[45px] font-bold text-[#ffbf5e]">{genreName}</h2>
+        <h2 className="text-[35px] sm:text-[45px] font-bold text-[#ffbf5e]">
+          {genreName}
+        </h2>
       </div>
 
       {error && <p className="text-red-500">{error}</p>}

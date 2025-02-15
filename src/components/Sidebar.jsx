@@ -5,6 +5,7 @@ import { FaBars, FaChevronLeft } from "react-icons/fa";
 import { sideBarLinks } from "../constants";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Search from "./Search";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to control sidebar visibility
@@ -72,6 +73,10 @@ const Sidebar = () => {
           <FaChevronLeft className="text-xl hover:text-[#ffbf5e]" />
         </button>
 
+        <div className="mt-[2rem] sm:hidden">
+          <Search />
+        </div>
+
         {/* Sidebar Links */}
         <div className="py-4 overflow-y-auto mt-10">
           <ul className="space-y-2 font-medium">
@@ -89,8 +94,11 @@ const Sidebar = () => {
 
             <ul className="grid grid-cols-2 p-2 text-start list-none">
               {genres.map((genre) => (
-                <li key={genre.id} className="hover:text-white">
-                  <button onClick={() => handleGenreButtonClick(genre)}>
+                <li key={genre.id} className="">
+                  <button
+                    onClick={() => handleGenreButtonClick(genre)}
+                    className="text-left"
+                  >
                     <span className="text-sm text-[#ffbf5e] hover:text-white">
                       {genre.name}
                     </span>
